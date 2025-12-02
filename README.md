@@ -31,7 +31,7 @@ This repository contains a complete presentation covering:
 1. Go to [Releases](https://github.com/MasidAsghar92/asd-detection-presentation/releases)
 2. Download the latest `ASD_Detection_Presentation.pptx`
 
-**Option 3: Generate Manually Trigger**
+**Option 3: Manual Generation Trigger**
 1. Go to [Actions](https://github.com/MasidAsghar92/asd-detection-presentation/actions/workflows/generate-pptx.yml)
 2. Click "Run workflow"
 3. Download from artifacts when complete

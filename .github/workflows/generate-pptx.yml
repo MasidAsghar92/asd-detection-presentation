@@ -36,8 +36,16 @@ jobs:
           path: ASD_Detection_Presentation.pptx
           retention-days: 90
       
+      - name: Upload PPTX to Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ASD_Detection_Presentation.pptx
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
       - name: Create Release and Upload PPTX
-        if: github.event_name == 'workflow_dispatch' || github.event_name == 'release'
+        if: github.event_name == 'workflow_dispatch'
         uses: softprops/action-gh-release@v1
         with:
           files: ASD_Detection_Presentation.pptx
