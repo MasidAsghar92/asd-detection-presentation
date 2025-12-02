@@ -1,0 +1,51 @@
+name: Generate PPTX from Marp
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'presentation.md'
+  workflow_dispatch:
+  release:
+    types: [created]
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install Marp CLI
+        run: npm install -g @marp-team/marp-cli
+      
+      - name: Convert Marp to PPTX
+        run: marp presentation.md --pptx --allow-local-files -o ASD_Detection_Presentation.pptx
+      
+      - name: Upload PPTX as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ASD-Detection-Presentation
+          path: ASD_Detection_Presentation.pptx
+          retention-days: 90
+      
+      - name: Create Release and Upload PPTX
+        if: github.event_name == 'workflow_dispatch' || github.event_name == 'release'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ASD_Detection_Presentation.pptx
+          tag_name: v${{ github.run_number }}
+          name: Presentation v${{ github.run_number }}
+          body: |
+            Automated release of ASD Detection Presentation
+            
+            Download the PPTX file below.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

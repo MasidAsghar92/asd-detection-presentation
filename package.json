@@ -1,0 +1,25 @@
+{
+  "name": "asd-detection-presentation",
+  "version": "1.0.0",
+  "description": "ASD Detection Using AI and Brain MRI - Marp Presentation",
+  "scripts": {
+    "build": "marp presentation.md --pptx -o ASD_Detection_Presentation.pptx",
+    "build:pdf": "marp presentation.md --pdf -o ASD_Detection_Presentation.pdf",
+    "build:html": "marp presentation.md --html -o index.html",
+    "watch": "marp -w presentation.md"
+  },
+  "keywords": [
+    "marp",
+    "presentation",
+    "asd",
+    "autism",
+    "ai",
+    "mri",
+    "deep-learning"
+  ],
+  "author": "Masid Asghar",
+  "license": "MIT",
+  "devDependencies": {
+    "@marp-team/marp-cli": "^3.4.0"
+  }
+}
